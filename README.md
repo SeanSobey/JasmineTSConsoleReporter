@@ -1,7 +1,7 @@
 # Jasmine Typescript Console Reporter
 
 [![issues](https://img.shields.io/github/issues/SeanSobey/JasmineTSConsoleReporter.svg)](https://github.com/SeanSobey/JasmineTSConsoleReporter/issues)
-[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/SeanSobey/ReflectionJS/blob/master/LICENSE)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/SeanSobey/JasmineTSConsoleReporter/blob/master/LICENSE)
 
 A [Jasmine](https://jasmine.github.io/) Console Reporter that remaps Typescript files. This will use source maps to remap the error stack file paths and line numbers to the source typescript files.
 
