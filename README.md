@@ -1,5 +1,6 @@
 # Jasmine Typescript Console Reporter
 
+[![npm](https://img.shields.io/npm/v/jasmine-ts-console-reporter.svg)](https://www.npmjs.com/package/jasmine-ts-console-reporter)
 [![issues](https://img.shields.io/github/issues/SeanSobey/JasmineTSConsoleReporter.svg)](https://github.com/SeanSobey/JasmineTSConsoleReporter/issues)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/SeanSobey/JasmineTSConsoleReporter/blob/master/LICENSE)
 
