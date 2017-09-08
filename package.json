@@ -1,0 +1,24 @@
+{
+  "name": "jasminetsconsolereporter",
+  "version": "1.0.0",
+  "description": "A Jasmine Console Reporter that remaps Typescript files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SeanSobey/JasmineTSConsoleReporter.git"
+  },
+  "author": "SeanSobey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SeanSobey/JasmineTSConsoleReporter/issues"
+  },
+  "homepage": "https://github.com/SeanSobey/JasmineTSConsoleReporter#readme",
+  "dependencies": {
+    "error-stack-parser": "^2.0.1",
+    "source-map": "^0.5.7",
+    "source-map-resolve": "^0.5.0"
+  }
+}
