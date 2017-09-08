@@ -1,4 +1,4 @@
-# JasmineTSConsoleReporter
+# Jasmine Typescript Console Reporter
 
 A [Jasmine](https://jasmine.github.io/) Console Reporter that remaps Typescript files. This will use source maps to remap the error stack file paths and line numbers to the source typescript files.
 
