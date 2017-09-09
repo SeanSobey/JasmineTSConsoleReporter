@@ -38,7 +38,7 @@ function create(jasmineCorePath) {
 					});
 					//console.log('originalPosition', originalPosition);
 					//const fileName = path.resolve(originalPosition.source, srcMapResult.sourcesRelativeTo);
-					const fileName = path.normalize(stackFrame.fileName + '\\..\\' + originalPosition.source); //TODO: handle paths not same as map file
+					const fileName = path.normalize(stackFrame.fileName + '/../' + originalPosition.source); //TODO: handle paths not same as map file
 					//console.log('result', fileName + ':' + originalPosition.line + ':' + originalPosition.column);
 					return stackFrame.source.replace(
 						stackFrame.fileName + ':' + stackFrame.lineNumber + ':' + stackFrame.columnNumber,
