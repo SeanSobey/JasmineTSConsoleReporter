@@ -1,5 +1,6 @@
 const path = require('path');
 const util = require('util');
+const fs = require("fs");
 
 const Timer = require('./timer');
 const ConsoleReporter = require('./console-reporter');
@@ -17,7 +18,7 @@ function TSConsoleReporter(options) {
 		},
 		showColors: options.showColors === undefined ? true : options.showColors,
 		jasmineCorePath: jasmineCorePath,
-		stackFilter: tsStackFilter.create(jasmineCorePath)
+		stackFilter: tsStackFilter.create(jasmineCorePath, options)
 	});
 
 	return consoleReporter;
