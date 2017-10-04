@@ -24,9 +24,9 @@ function create(jasmineCorePath, options) {
 			.filter(function (stackFrame) {
 				let result = !stackFrame.fileName.includes(jasmineCorePath);
 				if (options.filter instanceof RegExp) {
-					result = result && options.filter.test(stackFrame.fileName);
+					result = result && !options.filter.test(stackFrame.fileName);
 				} else if (typeof options.filter === 'string') {
-					result = result && minimatch(stackFrame.fileName, options.filter);
+					result = result && !minimatch(stackFrame.fileName, options.filter);
 				}
 				return result;
 			})
