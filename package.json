@@ -18,6 +18,7 @@
   "homepage": "https://github.com/SeanSobey/JasmineTSConsoleReporter#readme",
   "dependencies": {
     "error-stack-parser": "^2.0.1",
+    "minimatch": "^3.0.4",
     "source-map": "^0.5.7",
     "source-map-resolve": "^0.5.0"
   }
