@@ -38,18 +38,28 @@ new TSConsoleReporter({
 });
 ```
 
-### Custom stack filter
+### Extra stack filter ignore
 
-You can provide additional filtering for the stack trace (in addition to the built in exclusion of jasmine sources), this is useful for when you are using test frameworks that show up in the stack trace like [typemoq](https://github.com/florinn/typemoq).
+You can provide additional ignore patterns for the stack trace (on top the built in exclusion of jasmine sources), this is useful for when you are using test frameworks that show up in the stack trace like [typemoq](https://github.com/florinn/typemoq).
 
 ```js
 // regexp
 new TSConsoleReporter({
-	filter: /^c:\/.*$/
+	stackFilterIgnore: /node_modules\\typemoq/
 });
 // or glob
 new TSConsoleReporter({
-	filter: '**/ignored/**/*.ts'
+	stackFilterIgnore: '**/node_modules/typemoq/**'
+});
+```
+
+### Custom message filter
+
+You can provide additional filtering for the error message, this is useful for when you want to limit or decorate the message output in some way.
+
+```js
+new TSConsoleReporter({
+	messageFilter: (message) => message.split('\n')[0]
 });
 ```
 

@@ -23,10 +23,10 @@ function create(jasmineCorePath, options) {
 			})
 			.filter(function (stackFrame) {
 				let result = !stackFrame.fileName.includes(jasmineCorePath);
-				if (options.filter instanceof RegExp) {
-					result = result && !options.filter.test(stackFrame.fileName);
-				} else if (typeof options.filter === 'string') {
-					result = result && !minimatch(stackFrame.fileName, options.filter);
+				if (options.stackFilterIgnore instanceof RegExp) {
+					result = result && !options.stackFilterIgnore.test(stackFrame.fileName);
+				} else if (typeof options.stackFilterIgnore === 'string') {
+					result = result && !minimatch(stackFrame.fileName, options.stackFilterIgnore);
 				}
 				return result;
 			})

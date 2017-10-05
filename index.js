@@ -13,12 +13,15 @@ function TSConsoleReporter(options) {
 	const jasmineCorePath = options.jasmineCorePath || path.join(require('jasmine-core').files.path, 'jasmine.js');
 	consoleReporter.setOptions({
 		timer: options.timer || new Timer(),
-		print: options.print ||function () {
+		print: options.print || function () {
 			process.stdout.write(util.format.apply(this, arguments));
 		},
 		showColors: options.showColors === undefined ? true : options.showColors,
 		jasmineCorePath: jasmineCorePath,
-		stackFilter: tsStackFilter.create(jasmineCorePath, options)
+		stackFilter: tsStackFilter.create(jasmineCorePath, options),
+		messageFilter: options.messageFilter || function (message) {
+			return message;
+		}
 	});
 
 	return consoleReporter;

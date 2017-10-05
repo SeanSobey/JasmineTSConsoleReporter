@@ -29,6 +29,7 @@ function ConsoleReporter() {
 		},
 		failedSuites = [],
 		stackFilter = defaultStackFilter,
+		messageFilter = defaultMessageFilter,
 		onComplete = function () {};
 
 	this.setOptions = function (options) {
@@ -48,7 +49,9 @@ function ConsoleReporter() {
 		if (options.stackFilter) {
 			stackFilter = options.stackFilter;
 		}
-
+		if (options.messageFilter) {
+			messageFilter = options.messageFilter;
+		}
 		if (options.onComplete) {
 			printDeprecation('Passing in an onComplete function to the ConsoleReporter is deprecated.');
 			onComplete = options.onComplete;
@@ -196,6 +199,10 @@ function ConsoleReporter() {
 			return stackLine.indexOf(jasmineCorePath) === -1;
 		}).join('\n');
 		return filteredStack;
+	}
+
+	function defaultMessageFilter(message) {
+		return message;
 	}
 
 	function specFailureDetails(result, failedSpecNumber) {
