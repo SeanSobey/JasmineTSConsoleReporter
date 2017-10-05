@@ -25,6 +25,16 @@ jasmine.getEnv().clearReporters(); // Clear default console reporter
 jasmine.getEnv().addReporter(new TSConsoleReporter());
 ```
 
+Load the helper file in Jasmine, eg on node jasmine.json:
+
+```json
+{
+	"helpers": [
+		"specs/helpers.js",
+	]
+}
+```
+
 ### Custom sourceMapProvider
 
 For more intricate usage scenarios, like using [istanbul](https://github.com/gotwarlost/istanbul) where the sourcemaps for instumented files are held in memory, you can locate the sourcemaps via a callback:
@@ -61,14 +71,4 @@ You can provide additional filtering for the error message, this is useful for w
 new TSConsoleReporter({
 	messageFilter: (message) => message.split('\n')[0]
 });
-```
-
-Load the helper file in Jasmine, eg on node jasmine.json:
-
-```json
-{
-	"helpers": [
-		"specs/helpers.js",
-	]
-}
 ```
