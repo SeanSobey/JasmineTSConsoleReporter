@@ -6,12 +6,14 @@ const sourceMapResolve = require('source-map-resolve'); //https://www.npmjs.com/
 const errorStackParser = require('error-stack-parser'); //https://github.com/stacktracejs/error-stack-parser
 const minimatch = require('minimatch');	//https://www.npmjs.com/package/minimatch
 
+function defaultSourceMapProvider(fileName) {
+	const code = fs.readFileSync(fileName, 'utf8');
+	return sourceMapResolve.resolveSourceMapSync(code, fileName, fs.readFileSync);
+}
+
 function create(jasmineCorePath, options) {
 
-	const sourceMapProvider = options.sourceMapProvider || ((fileName) => {
-		const code = fs.readFileSync(fileName, 'utf8');
-		return sourceMapResolve.resolveSourceMapSync(code, fileName, fs.readFileSync);
-	});
+	const sourceMapProvider = options.sourceMapProvider || defaultSourceMapProvider;
 
 	return function tsStackFilter(stack) {
 
@@ -41,19 +43,22 @@ function create(jasmineCorePath, options) {
 				}
 				//console.log('stackFrame', stackFrame);
 				//console.log('srcMapResult', Object.assign({}, srcMapResult, { map: 'excluded' })); 
+				//console.log('srcMapResult.map.sources', srcMapResult.map.sources);
 				const srcMapConsumer = new sourceMap.SourceMapConsumer(srcMapResult.map);
 				const originalPosition = srcMapConsumer.originalPositionFor({
 					line: stackFrame.lineNumber,
 					column: stackFrame.columnNumber
 				});
 				//console.log('originalPosition', originalPosition);
-				//const fileName = path.resolve(originalPosition.source, srcMapResult.sourcesRelativeTo);
 				if (!originalPosition.source) {
-					//console.log('Failed to resolve original position');
+					//console.warn('Failed to resolve sourcemap original position');
 					return stackFrame.source;
 				}
-				const fileName = path.normalize(stackFrame.fileName + '/../' + originalPosition.source); //TODO: handle paths not same as map file
-				//console.log('result', fileName + ':' + originalPosition.line + ':' + originalPosition.column);
+				const fileName = path.resolve(srcMapResult.sourcesRelativeTo, originalPosition.source);
+				if (!fs.existsSync(fileName)) {
+					//console.warn('Failed to resolve source file', srcMapResult.sourcesRelativeTo, 'with', originalPosition.source);
+					return stackFrame.source;
+				}
 				return stackFrame.source.replace(
 					stackFrame.fileName + ':' + stackFrame.lineNumber + ':' + stackFrame.columnNumber,
 					fileName + ':' + originalPosition.line + ':' + originalPosition.column

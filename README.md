@@ -43,10 +43,13 @@ For more intricate usage scenarios, like using [istanbul](https://github.com/got
 new TSConsoleReporter({
 	sourceMapProvider: (fileName) => {
 		const map = fetchMySourceMap(fileName);
-		return map ? { map } : null;	// Return null if no source map is found.
+		const sourcesRelativeTo = '< Relative path from source map file to source file. >';
+		return map ? { map, sourcesRelativeTo } : null;	// Return null if no source map is found.
 	}
 });
 ```
+
+The return object must be the same as [source-map-resolve](https://www.npmjs.com/package/source-map-resolve#sourcemapresolveresolvesourcemapcode-codeurl-read-callback).
 
 ### Extra stack filter ignore
 
