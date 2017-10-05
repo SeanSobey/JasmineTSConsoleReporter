@@ -1,6 +1,6 @@
 {
   "name": "jasmine-ts-console-reporter",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "A Jasmine Console Reporter that remaps Typescript files.",
   "main": "index.js",
   "scripts": {

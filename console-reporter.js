@@ -215,7 +215,7 @@ function ConsoleReporter() {
 			printNewline();
 			print(indent('Message:', 2));
 			printNewline();
-			print(colored('red', indent(messageFilter(failedExpectation.message, 4))));
+			print(colored('red', indent(messageFilter(failedExpectation.message), 4)));
 			printNewline();
 			print(indent('Stack:', 2));
 			printNewline();
