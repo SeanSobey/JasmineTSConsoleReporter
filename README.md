@@ -66,6 +66,16 @@ new TSConsoleReporter({
 });
 ```
 
+### Custom title filter
+
+You can provide additional filtering for the spec title, this is useful for when you want to limit or decorate the title output in some way.
+
+```js
+new TSConsoleReporter({
+	titleFilter: (title) => (title.length > 100) ? title.substr(0, 100 - 1) + '...' : title
+});
+```
+
 ### Custom message filter
 
 You can provide additional filtering for the error message, this is useful for when you want to limit or decorate the message output in some way.

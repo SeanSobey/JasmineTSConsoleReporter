@@ -18,10 +18,9 @@ function TSConsoleReporter(options) {
 		},
 		showColors: options.showColors === undefined ? true : options.showColors,
 		jasmineCorePath: jasmineCorePath,
+		titleFilter: options.titleFilter,
 		stackFilter: tsStackFilter.create(jasmineCorePath, options),
-		messageFilter: options.messageFilter || function (message) {
-			return message;
-		}
+		messageFilter: options.messageFilter
 	});
 
 	return consoleReporter;

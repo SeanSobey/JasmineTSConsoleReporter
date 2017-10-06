@@ -28,6 +28,7 @@ function ConsoleReporter() {
 			none: '\x1B[0m'
 		},
 		failedSuites = [],
+		titleFilter = defaultTitleFilter,
 		stackFilter = defaultStackFilter,
 		messageFilter = defaultMessageFilter,
 		onComplete = function () {};
@@ -45,6 +46,9 @@ function ConsoleReporter() {
 		}
 		if (options.printDeprecation) {
 			printDeprecation = options.printDeprecation;
+		}
+		if (options.titleFilter) {
+			titleFilter = options.titleFilter;
 		}
 		if (options.stackFilter) {
 			stackFilter = options.stackFilter;
@@ -201,6 +205,10 @@ function ConsoleReporter() {
 		return filteredStack;
 	}
 
+	function defaultTitleFilter(title) {
+		return title;
+	}
+
 	function defaultMessageFilter(message) {
 		return message;
 	}
@@ -208,7 +216,7 @@ function ConsoleReporter() {
 	function specFailureDetails(result, failedSpecNumber) {
 		printNewline();
 		print(failedSpecNumber + ') ');
-		print(result.fullName);
+		print(titleFilter(result.fullName));
 
 		for (var i = 0; i < result.failedExpectations.length; i++) {
 			var failedExpectation = result.failedExpectations[i];
