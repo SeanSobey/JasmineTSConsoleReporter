@@ -54,7 +54,7 @@ function create(jasmineCorePath, options) {
 					//console.warn('Failed to resolve sourcemap original position');
 					return stackFrame.source;
 				}
-				const fileName = path.resolve(srcMapResult.sourcesRelativeTo, originalPosition.source);
+				const fileName = path.resolve(path.dirname(srcMapResult.sourcesRelativeTo), originalPosition.source);
 				if (!fs.existsSync(fileName)) {
 					//console.warn('Failed to resolve source file', srcMapResult.sourcesRelativeTo, 'with', originalPosition.source);
 					return stackFrame.source;
