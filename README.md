@@ -16,6 +16,24 @@ A [Jasmine](https://jasmine.github.io/) Console Reporter that remaps Typescript 
 
 ## Usage
 
+### jasmine command line
+
+Just use `--reporter=jasmine-ts-console-reporter` argument when calling `jasmine` command line tool, for example, from your package.json file:
+
+```json
+"scripts": {
+	"test": "tsc ; jasmine --reporter=jasmine-ts-console-reporter"
+},
+```
+
+**IMPORTANT** Don't forget to configure your TypeScript compiler to generate sourcemaps, for example adding the following in `tsconfig.json`:
+
+```json
+    "sourceMap": true
+```
+
+### Using a jasmine helper
+
 Create a helper file for jasmine, eg specs/helpers.js
 
 ```js
