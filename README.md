@@ -22,7 +22,7 @@ Just use `--reporter=jasmine-ts-console-reporter` argument when calling `jasmine
 
 ```json
 "scripts": {
-	test": "tsc ; jasmine --reporter=jasmine-ts-console-reporter"
+	"test": "tsc ; jasmine --reporter=jasmine-ts-console-reporter"
 },
 ```
 
