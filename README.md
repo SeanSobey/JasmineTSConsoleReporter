@@ -12,11 +12,11 @@ A [Jasmine](https://jasmine.github.io/) Console Reporter that remaps Typescript 
 
 ## Installation
 
-`npm i jasmine-ts-console-reporter`
+`npm i --save-dev jasmine-ts-console-reporter`
 
 ## Usage
 
-### jasmine command line
+### Using jasmine command line tool
 
 Just use `--reporter=jasmine-ts-console-reporter` argument when calling `jasmine` command line tool, for example, from your package.json file:
 
@@ -26,11 +26,7 @@ Just use `--reporter=jasmine-ts-console-reporter` argument when calling `jasmine
 },
 ```
 
-**IMPORTANT** Don't forget to configure your TypeScript compiler to generate sourcemaps, for example adding the following in `tsconfig.json`:
-
-```json
-    "sourceMap": true
-```
+**IMPORTANT** Don't forget to configure your TypeScript compiler to generate sourcemaps, for example adding `"sourceMap": true` in your `tsconfig.json`
 
 ### Using a jasmine helper
 
