@@ -22,11 +22,11 @@ Just use `--reporter=jasmine-ts-console-reporter` argument when calling `jasmine
 
 ```json
 "scripts": {
-	"test": "tsc ; jasmine --reporter=jasmine-ts-console-reporter"
+	test": "tsc ; jasmine --reporter=jasmine-ts-console-reporter"
 },
 ```
 
-**IMPORTANT** Don't forget to configure your TypeScript compiler to generate sourcemaps, for example adding `"sourceMap": true` in your `tsconfig.json`
+**IMPORTANT** Don't forget to configure the TypeScript compiler to generate sourcemaps, for example adding `"sourceMap": true` in your `tsconfig.json`
 
 ### Using a jasmine helper
 
