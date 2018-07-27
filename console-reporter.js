@@ -67,54 +67,51 @@ function ConsoleReporter() {
 		executableSpecCount = 0;
 		failureCount = 0;
 		if (options && options.order && options.order.random) {
-			print('Randomized with seed ' + options.order.seed);
-			printNewline();
+			printLine('Randomized with seed ' + options.order.seed);
 		}
-		print('Started');
-		printNewline();
+		printLine('Started');
 		timer.start();
 	};
 
 	this.jasmineDone = function (result) {
-		printNewline();
-		printNewline();
+		printNewline(); // line break after last dot
+		printNewline(); // empty line
+
 		if (failedSpecs.length > 0) {
-			print('Failures:');
-		}
-		for (var i = 0; i < failedSpecs.length; i++) {
-			specFailureDetails(failedSpecs[i], i + 1);
+			printLine('Failures:');
+			printNewline();
+			for (var i = 0; i < failedSpecs.length; i++) {
+				specFailureDetails(failedSpecs[i], i + 1);
+			}
+			printNewline();
 		}
 
 		if (pendingSpecs.length > 0) {
-			print("Pending:");
-		}
-		for (i = 0; i < pendingSpecs.length; i++) {
-			pendingSpecDetails(pendingSpecs[i], i + 1);
+			printLine("Pending:");
+			printNewline();
+			for (i = 0; i < pendingSpecs.length; i++) {
+				pendingSpecDetails(pendingSpecs[i], i + 1);
+			}
+			printNewline();
 		}
 
 		if (specCount > 0) {
-			printNewline();
-
 			if (executableSpecCount !== specCount) {
-				print('Ran ' + executableSpecCount + ' of ' + specCount + plural(' spec', specCount));
-				printNewline();
+				printLine('Ran ' + executableSpecCount + ' of ' + specCount + plural(' spec', specCount));
 			}
+
 			var specCounts = executableSpecCount + ' ' + plural('spec', executableSpecCount) + ', ' +
 				failureCount + ' ' + plural('failure', failureCount);
-
 			if (pendingSpecs.length) {
 				specCounts += ', ' + pendingSpecs.length + ' pending ' + plural('spec', pendingSpecs.length);
 			}
-
-			print(specCounts);
+			printLine(specCounts);
 		} else {
-			print('No specs found');
+			printLine('No specs found');
 		}
 
-		printNewline();
 		var seconds = timer.elapsed() / 1000;
-		print('Finished in ' + seconds + ' ' + plural('second', seconds));
-		printNewline();
+		printLine('Finished in ' + seconds + ' ' + plural('second', seconds));
 
 		for (i = 0; i < failedSuites.length; i++) {
 			suiteFailureDetails(failedSuites[i]);
@@ -125,8 +122,7 @@ function ConsoleReporter() {
 		}
 
 		if (result && result.order && result.order.random) {
-			print('Randomized with seed ' + result.order.seed);
-			printNewline();
+			printLine('Randomized with seed ' + result.order.seed);
 		}
 
 		onComplete(failureCount === 0);
@@ -166,6 +162,11 @@ function ConsoleReporter() {
 	return this;
 
 	function printNewline() {
+		print('\n');
+	}
+
+	function printLine(str) {
+		print(str);
 		print('\n');
 	}
 
@@ -214,7 +215,6 @@ function ConsoleReporter() {
 	}
 
 	function specFailureDetails(result, failedSpecNumber) {
-		printNewline();
 		print(failedSpecNumber + ') ');
 		print(titleFilter(result.fullName));
 
@@ -235,18 +235,12 @@ function ConsoleReporter() {
 
 	function suiteFailureDetails(result) {
 		for (var i = 0; i < result.failedExpectations.length; i++) {
-			printNewline();
-			print(colored('red', 'An error was thrown in an afterAll'));
-			printNewline();
-			print(colored('red', 'AfterAll ' + result.failedExpectations[i].message));
-
+			printLine(colored('red', 'An error was thrown in an afterAll'));
+			printLine(colored('red', 'AfterAll ' + result.failedExpectations[i].message));
 		}
-		printNewline();
 	}
 
 	function pendingSpecDetails(result, pendingSpecNumber) {
-		printNewline();
-		printNewline();
 		print(pendingSpecNumber + ') ');
 		print(result.fullName);
 		printNewline();
